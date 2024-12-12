@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Управление категориями</title>
+</head>
+<body>
+    <h1>Управление категориями</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить категорию</button>
+    </form>
+    <ul>
+        {% for cat in categories %}
+            <li>{{ cat.name }} <a href="{% url 'delete_category' cat.id %}">Удалить</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'admin_dashboard' %}">Назад</a>
+</body>
+</html>

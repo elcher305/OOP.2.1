@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Личный кабинет</title>
+</head>
+<body>
+    <h1>Добро пожаловать, {{ user.username }}!</h1>
+    <a href="{% url 'logout' %}">Выйти</a>
+    <h2>Ваши заявки:</h2>
+    <ul>
+        {% for req in user_requests %}
+            <li>{{ req.title }} - {{ req.status }} - {{ req.created_at }} <a href="{% url 'delete_request' req.id %}">Удалить</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_request' %}">Создать заявку</a>
+</body>
+</html>

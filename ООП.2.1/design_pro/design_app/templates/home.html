@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать на главную страницу!</h1>
+    <a href="{% url 'login' %}">Вход</a> | <a href="{% url 'register' %}">Регистрация</a>
+    <h2>Последние выполненные заявки:</h2>
+    <ul>
+        {% for req in completed_requests %}
+            <li>{{ req.title }} - {{ req.category }} - {{ req.created_at }}</li>
+        {% endfor %}
+    </ul>
+    <p>Заявок в работе: {{ in_progress_count }}</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Панель администратора</title>
+</head>
+<body>
+    <h1>Панель администратора</h1>
+    <a href="{% url 'logout' %}">Выйти</a>
+    <h2>Заявки:</h2>
+    <ul>
+        {% for req in requests %}
+            <li>{{ req.title }} - {{ req.status }} - {{ req.created_at }}
+                <form method="post" action="{% url 'change_status' req.id %}">
+                    {% csrf_token %}
+                    <button type="submit" name="in_progress">Принято в работу</button>
+                    <button type="submit" name="completed">Выполнено</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'manage_categories' %}">Управление категориями</a>
+</body>
+</html>
